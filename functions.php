@@ -114,7 +114,7 @@ function genesis_sample_secondary_menu_args( $args ) {
 	$args['depth'] = 1;
 	return $args;
 }
-                    
+
 
 add_theme_support( 'custom-header', array(
 	'width'            => 132,
@@ -179,11 +179,11 @@ remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
 unregister_sidebar( 'header-right' );
 
 // Remove Primary Navigation's structural wrap.
-add_theme_support( 'genesis-structural-wraps', array( 
-	'header', 
-	'menu-secondary', 
-	'footer-widgets', 
-	'footer' 
+add_theme_support( 'genesis-structural-wraps', array(
+	'header',
+	'menu-secondary',
+	'footer-widgets',
+	'footer'
 ) );
 
 add_filter( 'theme_page_templates', 'genesis_sample_remove_genesis_page_templates' );
@@ -216,7 +216,55 @@ add_action( 'genesis_theme_settings_metaboxes', 'genesis_sample_remove_metaboxes
 function genesis_sample_remove_metaboxes( $_genesis_theme_settings_pagehook ) {
 	remove_meta_box( 'genesis-theme-settings-blogpage', $_genesis_theme_settings_pagehook, 'main' );
 }
+// Relocate the post info.
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+add_action( 'genesis_entry_header', 'genesis_post_info', 5 );
 
+// Add support for 3-column footer widgets.
+add_theme_support( 'genesis-footer-widgets', 3 );
+
+// Add support for after entry widget.
+add_theme_support( 'genesis-after-entry-widget-area' );
+
+// Relocate after entry widget.
+remove_action( 'genesis_after_entry', 'genesis_after_entry_widget_area' );
+add_action( 'genesis_after_entry', 'genesis_after_entry_widget_area', 5 );
+
+// // Register widget areas.
+// genesis_register_sidebar( array(
+// 	'id'          => 'home-slider',
+// 	'name'        => __( 'Home - Slider', 'executive-pro' ),
+// 	'description' => __( 'This is the slider section on the home page.', 'executive-pro' ),
+// ) );
+// genesis_register_sidebar( array(
+// 	'id'          => 'home-top',
+// 	'name'        => __( 'Home - Top', 'executive-pro' ),
+// 	'description' => __( 'This is the top section of the home page.', 'executive-pro' ),
+// ) );
+// genesis_register_sidebar( array(
+// 	'id'          => 'home-cta',
+// 	'name'        => __( 'Home - Call To Action', 'executive-pro' ),
+// 	'description' => __( 'This is the call to action section on the home page.', 'executive-pro' ),
+// ) );
+// genesis_register_sidebar( array(
+// 	'id'          => 'home-middle',
+// 	'name'        => __( 'Home - Middle', 'executive-pro' ),
+// 	'description' => __( 'This is the middle section of the home page.', 'executive-pro' ),
+// ) );
+
+// function ea_title_toggle_all_post_types( $post_types ) {
+// 	$post_types = get_post_types(
+// 		array(
+// 			'public'   => true,
+// 			'_builtin' => false,
+// 		),
+// 		'names'
+// 	);
+// 	$post_types[] = 'page';
+// 	$post_types[] = 'post';
+// 	return $post_types;
+// }
+// add_filter( 'be_title_toggle_post_types', 'ea_title_toggle_all_post_types' );
 // Unregister content/sidebar/sidebar layout setting.
 genesis_unregister_layout( 'content-sidebar-sidebar' );
 
@@ -229,6 +277,42 @@ genesis_unregister_layout( 'sidebar-content-sidebar' );
 // Unregister secondary sidebar.
 unregister_sidebar( 'sidebar-alt' );
 
+
+// Relocate the post info.
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+add_action( 'genesis_entry_header', 'genesis_post_info', 5 );
+
+// Add support for 3-column footer widgets.
+add_theme_support( 'genesis-footer-widgets', 3 );
+
+// Add support for after entry widget.
+add_theme_support( 'genesis-after-entry-widget-area' );
+
+// Relocate after entry widget.
+remove_action( 'genesis_after_entry', 'genesis_after_entry_widget_area' );
+add_action( 'genesis_after_entry', 'genesis_after_entry_widget_area', 5 );
+
+// Register widget areas.
+genesis_register_sidebar( array(
+	'id'          => 'home-slider',
+	'name'        => __( 'Home - Slider', 'executive-pro' ),
+	'description' => __( 'This is the slider section on the home page.', 'executive-pro' ),
+) );
+genesis_register_sidebar( array(
+	'id'          => 'home-top',
+	'name'        => __( 'Home - Top', 'executive-pro' ),
+	'description' => __( 'This is the top section of the home page.', 'executive-pro' ),
+) );
+genesis_register_sidebar( array(
+	'id'          => 'home-cta',
+	'name'        => __( 'Home - Call To Action', 'executive-pro' ),
+	'description' => __( 'This is the call to action section on the home page.', 'executive-pro' ),
+) );
+genesis_register_sidebar( array(
+	'id'          => 'home-middle',
+	'name'        => __( 'Home - Middle', 'executive-pro' ),
+	'description' => __( 'This is the middle section of the home page.', 'executive-pro' ),
+) );
 // Add typical attributes for footer navigation elements.
 add_filter( 'genesis_attr_nav-footer', 'genesis_attributes_nav' );
 
