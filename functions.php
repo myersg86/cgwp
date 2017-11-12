@@ -115,7 +115,6 @@ function genesis_sample_secondary_menu_args( $args ) {
 	return $args;
 }
 
-
 add_theme_support( 'custom-header', array(
 	'width'            => 132,
 	'height'           => 198,
@@ -131,15 +130,13 @@ remove_action( 'wp_head', 'genesis_custom_header_style' );
  *
  * Replace Header Site Title with Inline Logo
  *
- * @author AlphaBlossom / Tony Eppright, Neil Gee
  * @link http://www.alphablossom.com/a-better-wordpress-genesis-responsive-logo-header/
  * @link https://wpbeaches.com/adding-in-a-responsive-html-logoimage-header-via-the-customizer-for-genesis/
  *
- * @edited by Sridhar Katakam
- * @link https://sridharkatakam.com/
- *
 ************************************/
+
 add_filter( 'genesis_seo_title', 'custom_header_inline_logo', 10, 3 );
+
 function custom_header_inline_logo( $title, $inside, $wrap ) {
 
 	if ( get_header_image() ) {
@@ -187,6 +184,7 @@ add_theme_support( 'genesis-structural-wraps', array(
 ) );
 
 add_filter( 'theme_page_templates', 'genesis_sample_remove_genesis_page_templates' );
+
 /**
  * Remove Genesis Page Templates.
  *
@@ -194,6 +192,7 @@ add_filter( 'theme_page_templates', 'genesis_sample_remove_genesis_page_template
  * @param array $page_templates
  * @return array
  */
+
 function genesis_sample_remove_genesis_page_templates( $page_templates ) {
 	unset( $page_templates['page_archive.php'] );
 	unset( $page_templates['page_blog.php'] );
@@ -203,16 +202,16 @@ function genesis_sample_remove_genesis_page_templates( $page_templates ) {
 // Add single post navigation.
 add_action( 'genesis_after_entry', 'genesis_prev_next_post_nav' );
 add_action( 'genesis_after_loop', 'genesis_adjacent_entry_nav' );
-
 add_action( 'genesis_theme_settings_metaboxes', 'genesis_sample_remove_metaboxes' );
+
 /**
  * Remove Metaboxes
  * This removes unused or unneeded metaboxes from Genesis > Theme Settings.
  * See /genesis/lib/admin/theme-settings for all metaboxes.
  *
- * @author Bill Erickson
  * @link http://www.billerickson.net/code/remove-metaboxes-from-genesis-theme-settings/
  */
+
 function genesis_sample_remove_metaboxes( $_genesis_theme_settings_pagehook ) {
 	remove_meta_box( 'genesis-theme-settings-blogpage', $_genesis_theme_settings_pagehook, 'main' );
 }
@@ -230,41 +229,7 @@ add_theme_support( 'genesis-after-entry-widget-area' );
 remove_action( 'genesis_after_entry', 'genesis_after_entry_widget_area' );
 add_action( 'genesis_after_entry', 'genesis_after_entry_widget_area', 5 );
 
-// // Register widget areas.
-// genesis_register_sidebar( array(
-// 	'id'          => 'home-slider',
-// 	'name'        => __( 'Home - Slider', 'executive-pro' ),
-// 	'description' => __( 'This is the slider section on the home page.', 'executive-pro' ),
-// ) );
-// genesis_register_sidebar( array(
-// 	'id'          => 'home-top',
-// 	'name'        => __( 'Home - Top', 'executive-pro' ),
-// 	'description' => __( 'This is the top section of the home page.', 'executive-pro' ),
-// ) );
-// genesis_register_sidebar( array(
-// 	'id'          => 'home-cta',
-// 	'name'        => __( 'Home - Call To Action', 'executive-pro' ),
-// 	'description' => __( 'This is the call to action section on the home page.', 'executive-pro' ),
-// ) );
-// genesis_register_sidebar( array(
-// 	'id'          => 'home-middle',
-// 	'name'        => __( 'Home - Middle', 'executive-pro' ),
-// 	'description' => __( 'This is the middle section of the home page.', 'executive-pro' ),
-// ) );
-
-// function ea_title_toggle_all_post_types( $post_types ) {
-// 	$post_types = get_post_types(
-// 		array(
-// 			'public'   => true,
-// 			'_builtin' => false,
-// 		),
-// 		'names'
-// 	);
-// 	$post_types[] = 'page';
-// 	$post_types[] = 'post';
-// 	return $post_types;
-// }
-// add_filter( 'be_title_toggle_post_types', 'ea_title_toggle_all_post_types' );
+add_filter( 'be_title_toggle_post_types', 'ea_title_toggle_all_post_types' );
 // Unregister content/sidebar/sidebar layout setting.
 genesis_unregister_layout( 'content-sidebar-sidebar' );
 
@@ -276,7 +241,6 @@ genesis_unregister_layout( 'sidebar-content-sidebar' );
 
 // Unregister secondary sidebar.
 unregister_sidebar( 'sidebar-alt' );
-
 
 // Relocate the post info.
 remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
@@ -292,27 +256,28 @@ add_theme_support( 'genesis-after-entry-widget-area' );
 remove_action( 'genesis_after_entry', 'genesis_after_entry_widget_area' );
 add_action( 'genesis_after_entry', 'genesis_after_entry_widget_area', 5 );
 
-// Register widget areas.
+// Register widget areas for homepage
 genesis_register_sidebar( array(
 	'id'          => 'home-slider',
-	'name'        => __( 'Home - Slider', 'executive-pro' ),
-	'description' => __( 'This is the slider section on the home page.', 'executive-pro' ),
+	'name'        => __( 'Home - Slider', 'genesis-sample' ),
+	'description' => __( 'This is the slider section on the home page.', 'genesis-sample' ),
 ) );
 genesis_register_sidebar( array(
 	'id'          => 'home-top',
-	'name'        => __( 'Home - Top', 'executive-pro' ),
-	'description' => __( 'This is the top section of the home page.', 'executive-pro' ),
+	'name'        => __( 'Home - Top', 'genesis-sample' ),
+	'description' => __( 'This is the top section of the home page.', 'genesis-sample' ),
 ) );
 genesis_register_sidebar( array(
 	'id'          => 'home-cta',
-	'name'        => __( 'Home - Call To Action', 'executive-pro' ),
-	'description' => __( 'This is the call to action section on the home page.', 'executive-pro' ),
+	'name'        => __( 'Home - Call To Action', 'genesis-sample' ),
+	'description' => __( 'This is the call to action section on the home page.', 'genesis-sample' ),
 ) );
 genesis_register_sidebar( array(
 	'id'          => 'home-middle',
-	'name'        => __( 'Home - Middle', 'executive-pro' ),
-	'description' => __( 'This is the middle section of the home page.', 'executive-pro' ),
+	'name'        => __( 'Home - Middle', 'genesis-sample' ),
+	'description' => __( 'This is the middle section of the home page.', 'genesis-sample' ),
 ) );
+
 // Add typical attributes for footer navigation elements.
 add_filter( 'genesis_attr_nav-footer', 'genesis_attributes_nav' );
 
@@ -324,6 +289,7 @@ add_action( 'genesis_footer', 'genesis_sample_do_footernav', 5 );
  * @uses genesis_nav_menu() Display a navigation menu.
  * @uses genesis_nav_menu_supported() Checks for support of specific nav menu.
  */
+
 function genesis_sample_do_footernav() {
 
 	// Do nothing if menu not supported.
@@ -344,13 +310,14 @@ function genesis_sample_do_footernav() {
 }
 
 add_filter( 'genesis_footer_creds_text', 'genesis_sample_footer_creds_filter' );
+
 /**
  * Change Footer text.
  *
  * @link  https://my.studiopress.com/documentation/customization/shortcodes-reference/footer-shortcode-reference/
  */
+
 function genesis_sample_footer_creds_filter( $creds ) {
 	$creds = '[footer_copyright before="Copyright "]';
 	return $creds;
 }
-
